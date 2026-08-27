@@ -109,7 +109,7 @@
   function enterApp() {
     screenLogin.classList.add("hidden");
     screenApp.classList.remove("hidden");
-    whoamiBadge.textContent = currentUser === "moi" ? "Toi" : "Ton crush";
+    whoamiBadge.textContent = currentUser === "moi" ? "Toi" : "fille";
     renderLevels();
     subscribeToDares();
   }
