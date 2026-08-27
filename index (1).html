@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Défis à Distance</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== ÉCRAN DE CONNEXION ===================== -->
+  <div id="screen-login" class="screen">
+    <div class="login-card">
+      <div class="seal">✉</div>
+      <h1>Défis à Distance</h1>
+      <p class="subtitle">Un fil secret entre vous deux, où que vous soyez.</p>
+
+      <div class="who-picker">
+        <button class="who-btn" data-who="moi">Moi</button>
+        <button class="who-btn" data-who="crush">Mon crush</button>
+      </div>
+
+      <input type="password" id="password-input" placeholder="Mot de passe" autocomplete="off">
+      <button id="login-btn" class="primary-btn">Entrer</button>
+      <p id="login-error" class="error-text"></p>
+    </div>
+  </div>
+
+  <!-- ===================== APP PRINCIPALE ===================== -->
+  <div id="screen-app" class="screen hidden">
+
+    <header class="topbar">
+      <div class="brand">✉ <span>Défis à Distance</span></div>
+      <div class="topbar-right">
+        <span id="whoami-badge" class="badge"></span>
+        <button id="logout-btn" class="ghost-btn" title="Se déconnecter">⏻</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="envoyer">Envoyer</button>
+      <button class="tab-btn" data-tab="recus">Reçus <span id="badge-recus" class="count hidden">0</span></button>
+      <button class="tab-btn" data-tab="historique">Historique</button>
+    </nav>
+
+    <main>
+      <!-- ---- ONGLET ENVOYER ---- -->
+      <section id="tab-envoyer" class="tab-panel active">
+        <div class="levels" id="levels-list"></div>
+
+        <div id="dare-picker" class="dare-picker hidden">
+          <button class="back-btn" id="back-to-levels">← Niveaux</button>
+          <h2 id="dare-picker-title"></h2>
+          <div class="dare-list" id="dare-list"></div>
+
+          <div class="custom-dare">
+            <input type="text" id="custom-dare-input" placeholder="…ou écris ton propre défi">
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- ONGLET REÇUS ---- -->
+      <section id="tab-recus" class="tab-panel">
+        <div id="recus-list" class="feed"></div>
+        <p id="recus-empty" class="empty-state">Rien pour l'instant. Ton/ta partenaire n'a pas encore envoyé de défi.</p>
+      </section>
+
+      <!-- ---- ONGLET HISTORIQUE ---- -->
+      <section id="tab-historique" class="tab-panel">
+        <div id="historique-list" class="feed"></div>
+        <p id="historique-empty" class="empty-state">Aucun défi envoyé pour l'instant.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modale de confirmation d'envoi -->
+  <div id="send-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <p class="modal-level"></p>
+      <p id="send-modal-text" class="modal-text"></p>
+      <div class="modal-actions">
+        <button id="send-cancel" class="ghost-btn">Annuler</button>
+        <button id="send-confirm" class="primary-btn">Envoyer maintenant</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Firebase (base de données partagée gratuite) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="dares-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
